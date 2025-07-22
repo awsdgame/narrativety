@@ -163,7 +163,6 @@ function createRestartButton() {
 function updateStatsDisplay() {
     statsDisplay.innerHTML = `
         <p>Key: ${gameStats.hasKey ? "✔️" : "❌"}</p>
-        <p>Time: ${gameStats.timeLeft}</p>
     `;
 }
 
