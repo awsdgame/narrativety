@@ -1,0 +1,73 @@
+body {
+    background: #1a1a2e;
+    color: #e6e6e6;
+    font-family: 'Courier New', monospace;
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+#game-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#text-display {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    min-height: 150px;
+    border-left: 3px solid #4cc9f0;
+    padding-left: 1rem;
+    white-space: pre-wrap;
+}
+
+#choices-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.choice-btn {
+    background: #16213e;
+    color: #e6e6e6;
+    border: 1px solid #4cc9f0;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: 0.3s;
+    text-align: left;
+}
+
+.choice-btn:hover {
+    background: #4cc9f0;
+    color: #1a1a2e;
+}
+
+#stats-display {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+.choice-btn[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.time-display {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(0,0,0,0.7);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.relationship-meter {
+    height: 5px;
+    background: linear-gradient(to right, red, yellow, green);
+    margin-top: 5px;
+}
