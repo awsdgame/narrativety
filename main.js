@@ -5,25 +5,9 @@
 // ----- Game State -----
 let currentSceneId = "start";
 const gameStats = { 
-  
-
-    currentScene: "start",
-    stats: { 
     hasKey: false, 
     trust: 0, 
-    timeLeft: 100, },
-    relationships: {
-        mysteriousFigure: 50,
-        houseSpirit: 50
-    },
-    timeRemaining: 100,
-    inventory: {
-        items: [],
-        hasItem(item) {
-            return this.items.includes(item);
-        
-    }
-}
+    timeLeft: 100 
 };
 
 // ----- DOM Elements -----
@@ -87,24 +71,6 @@ const story = {
     "ending_ice": {
         "text": "The blue door opens to an endless frozen wasteland. (Frozen Ending)",
         "isEnding": true
-    },
-
-     "deciphered_message": {
-        "text": "The key's markings match symbols on the note - it's a map to the attic!",
-        "choices": [
-            {
-                "text": "Follow the map",
-                "next": "attic_discovery",
-                "effects": {
-                    "timeCost": 20
-                }
-            }
-        ]
-    },
-    "midnight_ending": {
-        "text": "The clock strikes twelve. The house dissolves around you as everything fades to black...",
-        "isEnding": true,
-        "unlockId": "time_ran_out"
     }
 };
 
@@ -121,15 +87,6 @@ function loadScene(sceneId) {
     if (!scene) {
         showError(`Scene "${sceneId}" not found!`);
         return;
-    }
-
-      if (scene.requiredItem && !gameStats.inventory.hasItem(scene.requiredItem)) {
-        return loadScene("missing_item_fallback");
-    }
-    if (scene.relationshipEffects) {
-        Object.entries(scene.relationshipEffects).forEach(([character, change]) => {
-            gameStats.relationships[character] += change;
-        });
     }
 
     // Clear previous choices
@@ -185,13 +142,6 @@ function createChoiceButton(choice) {
         currentSceneId = choice.next;
         loadScene(currentSceneId);
     });
-
-  if (choice.requiredItem && !gameStats.inventory.hasItem(choice.requiredItem)) {
-        button.disabled = true;
-        button.textContent = `${choice.text} (Missing Item)`;
-    } else {
-        button.textContent = choice.text;
-    }
 
     choicesContainer.appendChild(button);
 }
